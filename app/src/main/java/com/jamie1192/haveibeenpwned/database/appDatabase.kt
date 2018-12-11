@@ -1,4 +1,4 @@
-package com.jamie1192.mvvm_retrofit_template.database
+package com.jamie1192.haveibeenpwned.database
 
 import android.content.Context
 import androidx.room.Database

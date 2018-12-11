@@ -1,4 +1,4 @@
-package com.jamie1192.mvvm_retrofit_template.database
+package com.jamie1192.haveibeenpwned.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
