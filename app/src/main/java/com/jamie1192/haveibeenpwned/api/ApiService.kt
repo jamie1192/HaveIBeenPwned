@@ -19,7 +19,7 @@ interface ApiService {
     fun getBreachedAccount(@Path("email") email : String?) : Observable<List<Site>>
 
     @GET("/api/v2/breaches")
-    fun getAllBreaches() : Observable<ArrayList<Site>>
+    fun getAllBreaches() : Observable<List<Site>>
 
     companion object Factory {
 

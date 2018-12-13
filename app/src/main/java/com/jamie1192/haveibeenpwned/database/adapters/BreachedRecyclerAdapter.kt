@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.breached_site_list_item.view.*
  */
 class BreachedRecyclerAdapter : RecyclerView.Adapter<BreachedViewHolder>() {
 
-    private var sitesList : ArrayList<Site> = ArrayList()
+    private var sitesList : List<Site>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreachedViewHolder {
         return BreachedViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.breached_site_list_item, parent, false))
@@ -23,17 +23,17 @@ class BreachedRecyclerAdapter : RecyclerView.Adapter<BreachedViewHolder>() {
 
 
     override fun getItemCount(): Int {
-        return sitesList.size
+        return sitesList?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: BreachedViewHolder, position: Int) {
-        holder.name?.text = sitesList[position].name
-        holder.data?.text = holder.setDataClasses(sitesList[position].dataclasses)
-        holder.setSiteIcon(sitesList[position].logoPath)
+        holder.name?.text = sitesList?.get(position)?.name
+        holder.data?.text = holder.setDataClasses(sitesList?.get(position)?.dataclasses)
+        holder.setSiteIcon(sitesList?.get(position)?.logoPath)
     }
 
-    fun setList(list : ArrayList<Site>) {
-        sitesList = list
+    fun setList(list: List<Site>?) {
+        sitesList = list!!
         notifyDataSetChanged()
     }
 }
