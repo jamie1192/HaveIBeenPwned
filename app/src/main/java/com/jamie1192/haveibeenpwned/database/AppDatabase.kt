@@ -4,9 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.jamie1192.haveibeenpwned.database.converters.JsonConverter
-import com.jamie1192.haveibeenpwned.database.dao.TableEntityDao
+import com.jamie1192.haveibeenpwned.database.dao.BreachDao
 import com.jamie1192.haveibeenpwned.database.models.Breach
 
 /**
@@ -15,7 +13,7 @@ import com.jamie1192.haveibeenpwned.database.models.Breach
 @Database(entities = [Breach::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun tableEntityDao(): TableEntityDao
+    abstract fun tableEntityDao(): BreachDao
 
     companion object {
         @Volatile

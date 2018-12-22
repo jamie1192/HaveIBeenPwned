@@ -2,6 +2,7 @@ package com.jamie1192.haveibeenpwned.di
 
 import android.app.Application
 import com.jamie1192.haveibeenpwned.api.ApiService
+import com.jamie1192.haveibeenpwned.database.AppDatabase
 import org.koin.android.ext.android.startKoin
 import org.koin.dsl.module.module
 
@@ -12,7 +13,8 @@ class App : Application() {
 
     val appModule = module {
 
-        single { ApiService.create() }
+        single { ApiService.create(get()) }
+        single { AppDatabase.getDatabase(get()) }
     }
 
     override fun onCreate() {

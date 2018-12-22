@@ -5,14 +5,9 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jamie1192.haveibeenpwned.BreachedSites.BreachedSitesViewModel
-import com.jamie1192.haveibeenpwned.api.ApiService
-import com.jamie1192.haveibeenpwned.api.models.Site
-import com.jamie1192.haveibeenpwned.database.AppDatabase
+import com.jamie1192.haveibeenpwned.breachedSites.BreachedSitesViewModel
 import com.jamie1192.haveibeenpwned.database.adapters.BreachedRecyclerAdapter
 import com.jamie1192.haveibeenpwned.database.models.Breach
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         setupRecycler()
 
         getBreachedSites()
+
     }
 
 
@@ -58,15 +54,15 @@ class MainActivity : AppCompatActivity() {
     private fun saveBreaches(breaches : List<Site>) {
 
         var breachList: MutableList<Breach> = mutableListOf()
-        for (obj in breaches) {
-            var br = obj.name?.let { Breach(it, obj) }
-
-//            br?.key = obj.name!!
-//            br?.data = obj
-////            if (br != null) {
-            breachList.add(br!!)
-//            }
-        }
+//        for (obj in breaches) {
+//            var br = obj.name?.let { Breach(it, obj) }
+//
+////            br?.key = obj.name!!
+////            br?.data = obj
+//////            if (br != null) {
+//            breachList.add(br!!)
+////            }
+//        }
 
 //        appDatabase.tableEntityDao().insertBreaches(breachList)
     }

@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jamie1192.haveibeenpwned.R
-import com.jamie1192.haveibeenpwned.api.models.Site
+import com.jamie1192.haveibeenpwned.database.models.Breach
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.breached_site_list_item.view.*
 import java.util.*
@@ -13,26 +13,25 @@ import java.util.*
 /**
  * Created by jamie1192 on 9/12/18.
  */
+
 class BreachedRecyclerAdapter : RecyclerView.Adapter<BreachedViewHolder>() {
 
-    private var sitesList : List<Site> = Collections.emptyList()
+    private var sitesList : List<Breach> = Collections.emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreachedViewHolder {
         return BreachedViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.breached_site_list_item, parent, false))
     }
 
-
-
     override fun getItemCount(): Int = sitesList.size
 
 
     override fun onBindViewHolder(holder: BreachedViewHolder, position: Int) {
-        holder.name?.text = sitesList?.get(position)?.name
-        holder.data?.text = holder.setDataClasses(sitesList?.get(position)?.dataclasses)
-        holder.setSiteIcon(sitesList?.get(position)?.logoPath)
+        holder.name?.text = sitesList[position].name
+        holder.data?.text = holder.setDataClasses(sitesList[position].dataClasses)
+        holder.setSiteIcon(sitesList[position].logoPath)
     }
 
-    fun setList(list: List<Site>?) {
+    fun setList(list: List<Breach>?) {
         sitesList = list!!
         notifyDataSetChanged()
     }

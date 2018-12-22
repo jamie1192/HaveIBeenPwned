@@ -1,21 +1,47 @@
 package com.jamie1192.haveibeenpwned.database.models
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.jamie1192.haveibeenpwned.api.models.Site
+import com.google.gson.annotations.SerializedName
 import com.jamie1192.haveibeenpwned.database.converters.GsonConverter
 
 /**
  * Created by jamie1192 on 27/11/18.
  */
-@Entity(tableName = "breaches")
+
+@Entity(tableName = "Breaches")
 @TypeConverters(GsonConverter::class)
 data class Breach(
         @PrimaryKey
-        @ColumnInfo(name = "key")
-        var key: String,
-
-        @ColumnInfo(name = "data")
-        var data: Site)
+        @SerializedName("Name")
+        var name : String,
+        @SerializedName("Title")
+        var title : String?,
+        @SerializedName("Domain")
+        var domain : String?,
+        @SerializedName("BreachDate")
+        var breachDate : String?,
+        @SerializedName("AddedDate")
+        var addedDate : String?,
+        @SerializedName("ModifiedDate")
+        var modifiedDate : String?,
+        @SerializedName("PwnCount")
+        var pwnCount : Int?,
+        @SerializedName("Description")
+        var description : String?,
+        @SerializedName("LogoPath")
+        var logoPath : String?,
+        @SerializedName("DataClasses")
+        var dataClasses : List<String>?,
+        @SerializedName("IsVerified")
+        var isVerified : Boolean?,
+        @SerializedName("IsFabricated")
+        var isFabricated : Boolean?,
+        @SerializedName("IsSensitive")
+        var isSensitive : Boolean?,
+        @SerializedName("IsRetired")
+        var isRetired : Boolean?,
+        @SerializedName("IsSpamList")
+        var isSpamList : Boolean?
+)

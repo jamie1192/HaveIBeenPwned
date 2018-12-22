@@ -1,6 +1,8 @@
 package com.jamie1192.haveibeenpwned.api
 
-import com.jamie1192.haveibeenpwned.api.models.Site
+import android.content.Context
+import com.jamie1192.haveibeenpwned.database.models.Breach
+import com.jamie1192.haveibeenpwned.utils.NetworkInterceptor
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,21 +18,24 @@ import retrofit2.http.Path
 interface ApiService {
 
     @GET("/api/v2/breachedaccount/{email}")
-    fun getBreachedAccount(@Path("email") email : String?) : Observable<List<Site>>
+    fun getBreachedAccount(@Path("email") email : String?) : Observable<List<Breach>>
 
     @GET("/api/v2/breaches")
-    fun getAllBreaches() : Observable<List<Site>>
+    fun getAllBreaches() : Observable<List<Breach>>
 
     companion object Factory {
 
-        private var client = OkHttpClient().newBuilder().addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        fun create(context : Context): ApiService {
 
-        fun create(): ApiService {
+            var httpClient = OkHttpClient().newBuilder()
+            httpClient.addInterceptor(NetworkInterceptor(context))
+            httpClient.addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+
             val retrofit = retrofit2.Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl("https://haveibeenpwned.com")
-                .client(client.build())
+                .client(httpClient.build())
                 .build()
 
             return retrofit.create(ApiService::class.java)
