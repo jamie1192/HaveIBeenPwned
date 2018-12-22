@@ -53,4 +53,6 @@ dependencies {
     // optional - RxJava support for Room
     implementation "androidx.room:room-rxjava2:2.1.0-alpha03"
 
+    implementation 'org.koin:koin-android:1.0.2'
+
 }
