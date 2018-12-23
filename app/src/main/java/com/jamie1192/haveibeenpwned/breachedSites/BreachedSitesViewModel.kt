@@ -13,8 +13,13 @@ class BreachedSitesViewModel : ViewModel() {
     private var repository : BreachedSitesRepository = BreachedSitesRepository()
 
 
-    fun getBreachedSites(): LiveData<List<Breach>> {
-        return repository.getBreachedSites()
-    }
+    fun getBreachedSites(): LiveData<List<Breach>> = repository.getBreachedSites()
 
+    fun getSnackbarMessage() : LiveData<String> = repository.getSnackbarMessage()
+
+
+    override fun onCleared() {
+        super.onCleared()
+        repository.dispose()
+    }
 }

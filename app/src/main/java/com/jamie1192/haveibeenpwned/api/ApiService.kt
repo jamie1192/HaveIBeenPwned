@@ -1,6 +1,7 @@
 package com.jamie1192.haveibeenpwned.api
 
 import android.content.Context
+import com.jamie1192.haveibeenpwned.BuildConfig
 import com.jamie1192.haveibeenpwned.database.models.Breach
 import com.jamie1192.haveibeenpwned.utils.NetworkInterceptor
 import io.reactivex.Observable
@@ -27,9 +28,10 @@ interface ApiService {
 
         fun create(context : Context): ApiService {
 
-            var httpClient = OkHttpClient().newBuilder()
-            httpClient.addInterceptor(NetworkInterceptor(context))
-            httpClient.addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            val httpClient = OkHttpClient().newBuilder().addInterceptor(NetworkInterceptor(context))
+                        if (BuildConfig.DEBUG) {
+                httpClient.addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            }
 
             val retrofit = retrofit2.Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

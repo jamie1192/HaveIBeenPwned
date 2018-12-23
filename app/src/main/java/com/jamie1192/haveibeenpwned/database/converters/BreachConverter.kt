@@ -7,7 +7,7 @@ import com.google.gson.Gson
  * Created by jamie1192 on 13/12/18.
  */
 
-object GsonConverter {
+object BreachConverter {
 
     @TypeConverter
     @JvmStatic

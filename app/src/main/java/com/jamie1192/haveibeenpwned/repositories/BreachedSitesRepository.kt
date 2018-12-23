@@ -7,6 +7,8 @@ import com.jamie1192.haveibeenpwned.database.AppDatabase
 import com.jamie1192.haveibeenpwned.database.models.Breach
 import com.jamie1192.haveibeenpwned.di.App
 import com.jamie1192.haveibeenpwned.utils.NoNetworkException
+import com.jamie1192.haveibeenpwned.utils.SingleLiveEvent
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.get
@@ -19,12 +21,14 @@ import timber.log.Timber
 
 class BreachedSitesRepository {
 
+    private var snackbarMessage : SingleLiveEvent<String> = SingleLiveEvent()
     private var breachesLiveData : MutableLiveData<List<Breach>> = MutableLiveData()
     private val apiService : ApiService = App().get()
     private val appDatabase : AppDatabase = App().get()
+    private val compDisposable = CompositeDisposable()
 
     fun getBreachedSites() : LiveData<List<Breach>> {
-        var disposable : Disposable = apiService.getAllBreaches()
+        val disposable : Disposable = apiService.getAllBreaches()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe({ breaches ->
@@ -34,28 +38,42 @@ class BreachedSitesRepository {
 
             }, {
                 if(it is NoNetworkException) {
+                    snackbarMessage.postValue("No Network connection.")
                     Timber.w(it)
                     loadSavedBreaches()
                 }
             })
 
+        compDisposable.add(disposable)
         return breachesLiveData
     }
 
 
     private fun saveBreaches(list : List<Breach>) {
-        appDatabase.tableEntityDao().insertBreaches(list)
+        appDatabase.breachDao().insertBreaches(list)
+        Timber.w("saving to database")
+        snackbarMessage.postValue("Updated local database.")
     }
 
     private fun loadSavedBreaches() {
 
-        var disposable : Disposable = appDatabase.tableEntityDao().getAllTableEntities()
+        val disposable : Disposable = appDatabase.breachDao().getAllTableEntities()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe({ breaches ->
+                Timber.w("Loading from database")
                 breachesLiveData.postValue(breaches)
             }, {
                 Timber.w(it)
             })
+        compDisposable.add(disposable)
+    }
+
+    fun getSnackbarMessage() : LiveData<String> {
+        return snackbarMessage
+    }
+
+    fun dispose() {
+        compDisposable.dispose()
     }
 }

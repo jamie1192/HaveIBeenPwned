@@ -4,14 +4,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
-import com.jamie1192.haveibeenpwned.database.converters.GsonConverter
+import com.jamie1192.haveibeenpwned.database.converters.BreachConverter
 
 /**
  * Created by jamie1192 on 27/11/18.
  */
 
 @Entity(tableName = "Breaches")
-@TypeConverters(GsonConverter::class)
+@TypeConverters(BreachConverter::class)
 data class Breach(
         @PrimaryKey
         @SerializedName("Name")

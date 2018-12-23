@@ -13,7 +13,7 @@ import com.jamie1192.haveibeenpwned.database.models.Breach
 @Database(entities = [Breach::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun tableEntityDao(): BreachDao
+    abstract fun breachDao(): BreachDao
 
     companion object {
         @Volatile

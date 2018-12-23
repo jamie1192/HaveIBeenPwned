@@ -15,6 +15,8 @@ class App : Application() {
 
         single { ApiService.create(get()) }
         single { AppDatabase.getDatabase(get()) }
+        single { SharedPrefsModule.getSharedPrefs(get()) }
+
     }
 
     override fun onCreate() {
