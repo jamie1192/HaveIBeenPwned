@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/main_coord_layout"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+    android:id="@+id/main_coord_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:layout_scrollFlags="scroll|enterAlways|snap"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
 
         <androidx.appcompat.widget.Toolbar
@@ -20,34 +21,31 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/hibpPrimary"
+            android:theme="@style/Toolbar2"
             android:elevation="4dp"
-            android:theme="@style/Base.Theme.MaterialComponents.Light"
+            app:titleTextColor="@color/md_white_1000"
             />
 
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--<androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!---->
+    <!--&gt;-->
+
+    <FrameLayout
+        android:id="@+id/frame_activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+    </FrameLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/breached_sites_recycler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+    <!--
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!-</androidx.constraintlayout.widget.ConstraintLayout>-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -8,4 +8,66 @@
         <item name="colorAccent">@color/hibpAccent</item>
     </style>
 
+    <style name="ToolbarDropdownTheme" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="colorPrimary">@color/hibpPrimary</item>
+        <item name="colorPrimaryDark">@color/hibpPrimaryDark</item>
+        <item name="colorAccent">@color/hibpAccent</item>
+        <item name="android:colorBackground">#3e3e3e</item>
+    </style>
+
+    <style name="BottomSheetDialogCustom" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+
+
+
+    <style name="BottomSheetDialog" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="android:background">@drawable/dialog_corners_background</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheetDialog</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+    <style name="Toolbar2" parent="ThemeOverlay.MaterialComponents.Dark">
+        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="colorPrimary">@color/hibpPrimary</item>
+        <item name="colorPrimaryDark">@color/hibpPrimaryDark</item>
+        <item name="colorAccent">@color/hibpAccent</item>
+        <item name="android:colorBackground">#3e3e3e</item>
+    </style>
+
+
+    <style name="MaterialCustomTheme" parent="MaterialDrawerTheme.TranslucentStatus">
+        <!-- ...and here we setting appcompat’s color theme attrs -->
+        <item name="colorPrimary">@color/hibpPrimary</item>
+        <item name="colorPrimaryDark">@color/hibpPrimaryDark</item>
+        <item name="colorAccent">@color/hibpAccent</item>
+        <!--<item name="android:windowBackground">@color/md_dark_background</item>-->
+
+        <!-- MaterialDrawer specific values -->
+        <item name="material_drawer_background">@color/md_dark_dialogs</item>
+        <item name="material_drawer_primary_text">@color/md_white_1000</item>
+        <item name="material_drawer_secondary_text">@color/md_grey_900</item>
+        <item name="material_drawer_hint_text">@color/md_grey_900</item>
+        <item name="material_drawer_divider">@color/material_drawer_dark_divider</item>
+        <item name="material_drawer_selected">@color/hibpAccentSelected</item>
+
+        <item name="material_drawer_selected_text">@color/hibpAccent</item>
+        <item name="material_drawer_header_selection_text">
+            @color/material_drawer_dark_primary_text
+        </item>
+
+    </style>
+
 </resources>

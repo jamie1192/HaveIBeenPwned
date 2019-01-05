@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/list_item_padding"
+    android:background="@drawable/dialog_corners_background">
+
+    <TextView
+        android:id="@+id/modal_site_pwn_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:textColor="@color/hibpAccent"
+        android:text="asdasdsad pwned"
+        />
+
+    <ImageView
+        android:id="@+id/modal_site_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/list_item_padding"
+        app:layout_constraintTop_toBottomOf="@id/modal_site_pwn_count"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/modal_site_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/list_item_spacing"
+        app:layout_constraintTop_toTopOf="@id/modal_site_icon"
+        app:layout_constraintBottom_toBottomOf="@id/modal_site_icon"
+        app:layout_constraintStart_toEndOf="@id/modal_site_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/site_title"
+        android:textColor="@color/md_white_1000"
+        android:textStyle="bold"
+        android:text="MySpace"
+        />
+
+    <TextView
+        android:id="@+id/modal_site_details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/list_item_padding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/modal_site_icon"
+        android:textColor="@color/md_white_1000"
+        android:linksClickable="true"
+        />
+
+    <TextView
+        android:id="@+id/modal_site_breach_date_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/breachDate"
+        android:textColor="@color/hibpAccent"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/list_item_spacing"
+        app:layout_constraintTop_toBottomOf="@id/modal_site_details"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/modal_site_breach_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/list_item_padding"
+        app:layout_constraintTop_toTopOf="@id/modal_site_breach_date_title"
+        app:layout_constraintStart_toEndOf="@id/modal_site_breach_date_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="19 Feb 2018"
+        android:textColor="@color/md_white_1000"
+        />
+
+    <TextView
+        android:id="@+id/modal_site_added_date_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addedDate"
+        android:textColor="@color/hibpAccent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/modal_site_breach_date"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/modal_site_added_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/list_item_padding"
+        android:layout_marginBottom="@dimen/list_item_padding"
+        app:layout_constraintTop_toTopOf="@id/modal_site_added_date_title"
+        app:layout_constraintStart_toEndOf="@id/modal_site_added_date_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/md_white_1000"
+        />
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
+    

@@ -7,4 +7,14 @@
     <color name="hibpPrimary">#378baa</color>
     <color name="hibpPrimaryDark">#005e7b</color>
     <color name="hibpAccent">#1a8cff</color>
+    <color name="hibpAccentSelected">#1f1a8cff</color>
+
+    <color name="hibpBreached">#9b3738</color>
+    <color name="hibpBreachedDark">#670012</color>
+    <color name="hibpBreachedLight">#D06662</color>
+
+    <color name="hibpNoPwnage">#318934</color>
+    <color name="hibpNoPwnageDark">#005B04</color>
+    <color name="hibpNoPwnageLight">#64BA61</color>
+
 </resources>

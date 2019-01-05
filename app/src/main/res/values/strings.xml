@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">\';--HaveIBeenPwned</string>
+    <string name="sortBy">Sort By…</string>
+    <string name="sortBreachDateAsc">Breach Date Asc.</string>
+    <string name="sortBreachDateDesc">Breach Date Desc.</string>
+    <string name="sortNameAsc">Site Name Asc.</string>
+    <string name="breachDate">Breach Date:</string>
+    <string name="addedDate">Date added to HIBP:</string>
+    <string name="compromisedData">Compromised Data:</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="searchForEmail">Email Address...</string>
+    <string name="search">Search</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -60,4 +60,9 @@ class BreachedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
         return text
     }
+
+    fun clear() {
+        this.name.text = "Loading"
+        this.data.text = "Please wait..."
+    }
 }

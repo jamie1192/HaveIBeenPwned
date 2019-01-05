@@ -21,8 +21,7 @@ object BreachConverter {
     fun jsonToList(value: String): List<String>? {
 
         val objects = Gson().fromJson(value, Array<String>::class.java) as Array<String>
-        val list = objects.toList()
-        return list
+        return objects.toList()
     }
 
 }

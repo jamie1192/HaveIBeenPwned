@@ -29,7 +29,7 @@ interface ApiService {
         fun create(context : Context): ApiService {
 
             val httpClient = OkHttpClient().newBuilder().addInterceptor(NetworkInterceptor(context))
-                        if (BuildConfig.DEBUG) {
+            if (BuildConfig.DEBUG) {
                 httpClient.addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             }
 

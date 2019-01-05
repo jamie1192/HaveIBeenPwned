@@ -27,7 +27,7 @@ data class Breach(
         @SerializedName("ModifiedDate")
         var modifiedDate : String?,
         @SerializedName("PwnCount")
-        var pwnCount : Int?,
+        var pwnCount : Long?,
         @SerializedName("Description")
         var description : String?,
         @SerializedName("LogoPath")

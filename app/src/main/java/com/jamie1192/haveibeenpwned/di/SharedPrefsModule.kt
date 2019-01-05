@@ -8,10 +8,14 @@ import android.content.SharedPreferences
  */
 class SharedPrefsModule  {
 
-    companion object Factory {
+    private lateinit var prefs: SharedPreferences
 
-        fun getSharedPrefs(context: Context) : SharedPreferences {
-            return context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        }
+    companion object {
+
+//        prefs = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+
     }
+
+    fun getPrefs() = prefs
+
 }

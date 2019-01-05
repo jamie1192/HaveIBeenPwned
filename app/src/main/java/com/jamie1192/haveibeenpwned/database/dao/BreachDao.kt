@@ -1,5 +1,7 @@
 package com.jamie1192.haveibeenpwned.database.dao
 
+import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -20,5 +22,19 @@ interface BreachDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertBreaches(list : List<Breach>)
 
+    @Query("SELECT * FROM breaches WHERE name = :name")
+    fun getSiteByName(name : String) : LiveData<Breach>
+
+    @Query("SELECT * FROM breaches ORDER BY breachDate ASC")
+    fun getBreachesByDateAsc(): DataSource.Factory<Int, Breach>
+
+    @Query("SELECT * FROM breaches ORDER BY breachDate DESC")
+    fun getBreachesByDateDesc(): DataSource.Factory<Int, Breach>
+
+    @Query("SELECT * FROM breaches ORDER BY name ASC")
+    fun getBreachesByNameAsc(): DataSource.Factory<Int, Breach>
+
+    @Query("SELECT * FROM breaches ORDER BY name DESC")
+    fun getBreachesByNameDesc(): DataSource.Factory<Int, Breach>
 
 }
