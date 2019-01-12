@@ -30,7 +30,7 @@ interface ApiService {
 
             val httpClient = OkHttpClient().newBuilder().addInterceptor(NetworkInterceptor(context))
             if (BuildConfig.DEBUG) {
-                httpClient.addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                httpClient.addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
             }
 
             val retrofit = retrofit2.Retrofit.Builder()

@@ -37,4 +37,10 @@ interface BreachDao {
     @Query("SELECT * FROM breaches ORDER BY name DESC")
     fun getBreachesByNameDesc(): DataSource.Factory<Int, Breach>
 
+    @Query("SELECT * FROM breaches ORDER BY pwnCount ASC")
+    fun getBreachesByPwnAsc(): DataSource.Factory<Int, Breach>
+
+    @Query("SELECT * FROM breaches ORDER BY pwnCount DESC")
+    fun getBreachesByPwnDesc(): DataSource.Factory<Int, Breach>
+
 }

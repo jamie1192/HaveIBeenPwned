@@ -43,4 +43,7 @@ class EmailSearchAdapter : RecyclerView.Adapter<BreachedViewHolder>() {
         sitesList = kotlin.collections.emptyList()
         notifyDataSetChanged()
     }
+
+    fun getClickedSite() : PublishSubject<String> = onClickSite
+
 }

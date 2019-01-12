@@ -18,7 +18,7 @@ class App : Application() {
 
         single { ApiService.create(get()) }
         single { AppDatabase.getDatabase(get()) }
-//        single { SharedPrefsModule.(get()) }
+        single { SharedPrefsModule.Factory.create(get()) }
 
     }
 

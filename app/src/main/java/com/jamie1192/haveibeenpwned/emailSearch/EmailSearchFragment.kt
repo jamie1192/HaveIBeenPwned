@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 
 import com.jamie1192.haveibeenpwned.R
+import com.jamie1192.haveibeenpwned.breachedSites.BreachedSiteModalFragment
 import com.jamie1192.haveibeenpwned.utils.ColorUtil
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_email_search.*
 import timber.log.Timber
 
@@ -26,6 +28,7 @@ class EmailSearchFragment : Fragment() {
 
     private val adapter = EmailSearchAdapter()
     private lateinit var anim : ValueAnimator
+    private val compDisposable = CompositeDisposable()
 
     companion object {
         fun newInstance() = EmailSearchFragment()
@@ -59,6 +62,7 @@ class EmailSearchFragment : Fragment() {
         super.onDestroyView()
 
         if(anim.isRunning) anim.cancel()
+        compDisposable.dispose()
     }
 
     private fun setupRecycler() {
@@ -90,6 +94,12 @@ class EmailSearchFragment : Fragment() {
 
         //TODO onTextChangedListener to disable button?
 
+        val disposable = adapter.getClickedSite()
+            .subscribe {
+                val modal = BreachedSiteModalFragment.newInstance(it)
+                modal.show(childFragmentManager, "siteModal")
+            }
+        compDisposable.add(disposable)
     }
 
 

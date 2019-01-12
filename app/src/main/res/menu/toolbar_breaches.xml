@@ -15,7 +15,15 @@
                 android:id="@+id/sort_name_asc"
                 android:title="@string/sortNameAsc"
                 app:ico_icon="gmi_sort_asc"
-                app:ico_color="@color/md_black_1000"
+                app:ico_color="@color/md_white_1000"
+                app:ico_size="24dp"
+                />
+
+            <item
+                android:id="@+id/sort_name_desc"
+                android:title="@string/sortNameDesc"
+                app:ico_icon="gmi_sort_asc"
+                app:ico_color="@color/md_white_1000"
                 app:ico_size="24dp"
                 />
 
@@ -23,7 +31,7 @@
                 android:id="@+id/sort_date_asc"
                 android:title="@string/sortBreachDateAsc"
                 app:ico_icon="gmi_sort_amount_asc"
-                app:ico_color="@color/md_black_1000"
+                app:ico_color="@color/md_white_1000"
                 app:ico_size="24dp"
                 />
 
@@ -31,7 +39,23 @@
                 android:id="@+id/sort_date_desc"
                 android:title="@string/sortBreachDateDesc"
                 app:ico_icon="gmi_sort_amount_desc"
-                app:ico_color="@color/md_black_1000"
+                app:ico_color="@color/md_white_1000"
+                app:ico_size="24dp"
+                />
+
+            <item
+                android:id="@+id/sort_pwn_asc"
+                android:title="@string/sortPwnAsc"
+                app:ico_icon="gmi_sort_asc"
+                app:ico_color="@color/md_white_1000"
+                app:ico_size="24dp"
+                />
+
+            <item
+                android:id="@+id/sort_pwn_desc"
+                android:title="@string/sortPwnDesc"
+                app:ico_icon="gmi_sort_asc"
+                app:ico_color="@color/md_white_1000"
                 app:ico_size="24dp"
                 />
 
