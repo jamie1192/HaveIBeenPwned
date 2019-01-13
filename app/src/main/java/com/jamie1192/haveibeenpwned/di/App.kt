@@ -1,6 +1,7 @@
 package com.jamie1192.haveibeenpwned.di
 
 import android.app.Application
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.jamie1192.haveibeenpwned.BuildConfig
 import com.jamie1192.haveibeenpwned.api.ApiService
 import com.jamie1192.haveibeenpwned.database.AppDatabase
@@ -28,6 +29,7 @@ class App : Application() {
         if (BuildConfig.DEBUG) {
             plant(Timber.DebugTree())
         }
+        AndroidThreeTen.init(this)
         startKoin(this, listOf(appModule))
     }
 }

@@ -18,11 +18,11 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.get
-import org.threeten.bp.Duration
-import org.threeten.bp.ZoneOffset
-import org.threeten.bp.ZonedDateTime
+import org.threeten.bp.*
 import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.temporal.ChronoUnit
 import timber.log.Timber
+import java.util.*
 
 
 /**
@@ -42,16 +42,19 @@ class BreachedSitesRepository {
     fun checkLastUpdated() {
 
         sharedPrefs.getString("lastUpdated", null)?.let {
-            if (Duration.between(ZonedDateTime.now(ZoneOffset.UTC).toInstant(),
-                    ZonedDateTime.parse(it)).toHours() > 24 ) {
+            val hoursBetween = ChronoUnit.HOURS.between(Instant.parse(it), Instant.now()).apply {
+                Timber.i("Database updated $this hours ago")
+            }
+
+            if (hoursBetween > 24 ) {
                 updateDatabase()
             }
             else {
-                val dateTime = ZonedDateTime.parse(it).toLocalDateTime()
-                                    .format(DateTimeFormatter
-                                    .ofPattern("dd/MM/yyyy ',' hh:mm a"))
-                Timber.i(dateTime)
-                snackbarMessage.postValue(success("Last updated at $dateTime."))
+            Instant.parse(it).atZone(ZoneId.systemDefault())
+                .format(DateTimeFormatter.ofPattern("dd/MM/yyyy ',' hh:mm a", Locale.ENGLISH)).apply {
+                    Timber.i(this)
+                    snackbarMessage.postValue(success("Last updated at $this."))
+                }
             }
 
         } ?: run {
@@ -64,7 +67,6 @@ class BreachedSitesRepository {
     private fun updateDatabase() {
 
         snackbarMessage.postValue(loading("Updating database..."))
-
 
         val disposable : Disposable = apiService.getAllBreaches()
             .subscribeOn(Schedulers.io())
@@ -86,7 +88,7 @@ class BreachedSitesRepository {
 
     private fun insertUpdateBreaches(list : List<Breach>) {
 
-        sharedPrefs.edit().putString("lastUpdated", ZonedDateTime.now(ZoneOffset.UTC).toString()).apply()
+        sharedPrefs.edit().putString("lastUpdated", Instant.now().toString()).apply()
         appDatabase.breachDao().insertBreaches(list)
 
         System.out.println("Saved breaches to database ")

@@ -11,6 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 
 import com.jamie1192.haveibeenpwned.R
 import com.jamie1192.haveibeenpwned.utils.RecyclerSwipeHelper
@@ -82,4 +84,16 @@ class UserEmailsFragment : Fragment(), RecyclerSwipeHelper.SwipeListener {
         })
     }
 
+    private fun showSnackbar() {
+        view?.let {
+            var snackbar = Snackbar.make(it, "Email deleted!", Snackbar.LENGTH_LONG)
+                .setAction("undo") { undoDelete() }
+                .show()
+            
+        }
+    }
+
+    private fun undoDelete() {
+
+    }
 }

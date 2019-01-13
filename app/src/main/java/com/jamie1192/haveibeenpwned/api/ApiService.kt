@@ -28,19 +28,20 @@ interface ApiService {
 
         fun create(context : Context): ApiService {
 
-            val httpClient = OkHttpClient().newBuilder().addInterceptor(NetworkInterceptor(context))
-            if (BuildConfig.DEBUG) {
-                httpClient.addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
-            }
+            fun httpClient() = OkHttpClient.Builder().apply {
+                addInterceptor(NetworkInterceptor(context))
+                if (BuildConfig.DEBUG) addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
+            }.build()
 
-            val retrofit = retrofit2.Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://haveibeenpwned.com")
-                .client(httpClient.build())
-                .build()
 
-            return retrofit.create(ApiService::class.java)
+            fun retrofit() = retrofit2.Retrofit.Builder().apply {
+                addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                addConverterFactory(GsonConverterFactory.create())
+                baseUrl("https://haveibeenpwned.com")
+                client(httpClient())
+            }.build().create(ApiService::class.java)
+
+            return retrofit()
         }
     }
 
