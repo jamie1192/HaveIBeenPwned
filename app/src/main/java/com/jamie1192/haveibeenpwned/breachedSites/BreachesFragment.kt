@@ -91,11 +91,11 @@ class BreachesFragment : Fragment() {
             }
             R.id.sort_added_asc -> {
                 viewModel.setQuery("addedAsc")
-                sharedPrefs.edit().putString("breachOrder", "breachAsc").apply()
+                sharedPrefs.edit().putString("breachOrder", "addedAsc").apply()
             }
             R.id.sort_added_desc -> {
                 viewModel.setQuery("addedDesc")
-                sharedPrefs.edit().putString("breachOrder", "breachDesc").apply()
+                sharedPrefs.edit().putString("breachOrder", "addedDesc").apply()
             }
             R.id.sort_pwn_asc -> {
                 viewModel.setQuery("pwnAsc")
