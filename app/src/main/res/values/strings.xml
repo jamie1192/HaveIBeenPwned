@@ -16,4 +16,21 @@
     <string name="sortNameDesc">Site Name Desc.</string>
     <string name="sortPwnAsc">Pwn Count Asc.</string>
     <string name="sortPwnDesc">Pwn Count Desc.</string>
+    <string name="breachasc">breachAsc</string>
+    <string name="nameAsc">nameAsc</string>
+    <string name="nameDesc">nameDesc</string>
+    <string name="breachDesc">breachDesc</string>
+    <string name="pwnAsc">pwnAsc</string>
+    <string name="pwnDesc">pwnDesc</string>
+    <string name="sortAddedAsc">Date Added Asc</string>
+    <string name="sortAddedDesc">Date Added Desc</string>
+    <string name="breachDateTitle">Breach Date...</string>
+    <string name="addedDateTitle">Added Date...</string>
+    <string name="pwnCountTitle">Pwn Count...</string>
+    <string name="siteNameTitle">Site Name...</string>
+    <string name="sortByTitle">Sort By...</string>
+    <string name="ascending">Asc.</string>
+    <string name="descending">Desc.</string>
+    <string name="add">Add</string>
+    <string name="delete">DELETE</string>
 </resources>

@@ -103,6 +103,8 @@ class BreachedSitesRepository {
             "nameDesc" -> LivePagedListBuilder(appDatabase.breachDao().getBreachesByNameDesc(), 20).build()
             "breachAsc" -> LivePagedListBuilder(appDatabase.breachDao().getBreachesByDateAsc(), 20).build()
             "breachDesc" -> LivePagedListBuilder(appDatabase.breachDao().getBreachesByDateDesc(), 20).build()
+            "addedAsc" -> LivePagedListBuilder(appDatabase.breachDao().getBreachesByAddedAsc(), 20).build()
+            "addedDesc" -> LivePagedListBuilder(appDatabase.breachDao().getBreachesByAddedDesc(), 20).build()
             "pwnAsc" -> LivePagedListBuilder(appDatabase.breachDao().getBreachesByPwnAsc(), 20).build()
             "pwnDesc" -> LivePagedListBuilder(appDatabase.breachDao().getBreachesByPwnDesc(), 20).build()
             else -> {

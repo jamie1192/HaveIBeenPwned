@@ -1,5 +1,6 @@
 package com.jamie1192.haveibeenpwned.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.jamie1192.haveibeenpwned.database.models.UserEmail
 import io.reactivex.Maybe
@@ -12,10 +13,19 @@ import io.reactivex.Maybe
 interface UserDao {
 
     @Query("SELECT * FROM userEmail")
-    fun getAllAccounts() : Maybe<List<UserEmail>>
+    fun getAllAccounts() : LiveData<List<UserEmail>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertEmail(list: List<UserEmail>)
+    fun insertEmailList(list: List<UserEmail>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertEmail(email : UserEmail)
+
+    @Query("DELETE FROM userEmail WHERE email = :email")
+    fun deleteEmail(email : String)
+
+    @Query("DELETE FROM userEmail")
+    fun deleteAllEmails()
 
     @Update
     fun updateEmailDetails(email: UserEmail)

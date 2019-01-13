@@ -1,5 +1,6 @@
 package com.jamie1192.haveibeenpwned.breachedSites
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 
 import com.jamie1192.haveibeenpwned.R
 import com.jamie1192.haveibeenpwned.database.adapters.BreachedPagedAdapter
+import com.jamie1192.haveibeenpwned.di.App
 import com.jamie1192.haveibeenpwned.utils.Response
 import com.jamie1192.haveibeenpwned.utils.Response.Companion.STATUS_ERROR
 import com.jamie1192.haveibeenpwned.utils.Response.Companion.STATUS_LOADING
@@ -19,6 +21,7 @@ import com.mikepenz.iconics.utils.IconicsMenuInflaterUtil
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_breaches.*
+import org.koin.android.ext.android.get
 import timber.log.Timber
 
 private const val ARG_PARAM1 = "param1"
@@ -31,6 +34,7 @@ class BreachesFragment : Fragment() {
     private lateinit var viewModel : BreachedSitesViewModel
     private val adapter = BreachedPagedAdapter()
     private val compDisposable = CompositeDisposable()
+    private val sharedPrefs : SharedPreferences = App().get()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,27 +69,41 @@ class BreachesFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        Timber.w(item?.title.toString())
         when (item?.itemId) {
 
             R.id.sort_name_asc -> {
                 viewModel.setQuery("nameAsc")
+                sharedPrefs.edit().putString("breachOrder", "nameAsc").apply()
             }
             R.id.sort_name_desc -> {
                 viewModel.setQuery("nameDesc")
+                sharedPrefs.edit().putString("breachOrder", "nameDesc").apply()
             }
             R.id.sort_date_asc -> {
-                Timber.w("ASCENDING")
                 viewModel.setQuery("breachAsc")
+                sharedPrefs.edit().putString("breachOrder", "breachAsc").apply()
             }
             R.id.sort_date_desc -> {
-                Timber.w("DESCENDING")
                 viewModel.setQuery("breachDesc")
+                sharedPrefs.edit().putString("breachOrder", "breachDesc").apply()
+            }
+            R.id.sort_added_asc -> {
+                viewModel.setQuery("addedAsc")
+                sharedPrefs.edit().putString("breachOrder", "breachAsc").apply()
+            }
+            R.id.sort_added_desc -> {
+                viewModel.setQuery("addedDesc")
+                sharedPrefs.edit().putString("breachOrder", "breachDesc").apply()
             }
             R.id.sort_pwn_asc -> {
                 viewModel.setQuery("pwnAsc")
+                sharedPrefs.edit().putString("breachOrder", "pwnAsc").apply()
             }
             R.id.sort_pwn_desc -> {
                 viewModel.setQuery("pwnDesc")
+                sharedPrefs.edit().putString("breachOrder", "pwnDesc").apply()
             }
 
         }
@@ -102,6 +120,16 @@ class BreachesFragment : Fragment() {
         getOnClickSite()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+//        val scrollPosition = breached_sites_recycler.layoutManager?.
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+    }
+
     companion object {
 
         @JvmStatic
@@ -115,7 +143,6 @@ class BreachesFragment : Fragment() {
     }
 
     private fun setupRecycler() {
-        swipeRefresh.isRefreshing = true
         breached_sites_recycler.layoutManager = LinearLayoutManager(context)
         breached_sites_recycler.adapter = adapter
     }
@@ -124,12 +151,14 @@ class BreachesFragment : Fragment() {
 
         viewModel.checkLastUpdated()
 
-        viewModel.setQuery("nameAsc")
+        sharedPrefs.getString("breachOrder", null)?.let {
+            viewModel.setQuery(it)
+        }?: viewModel.setQuery("nameAsc")
+
 
         viewModel.getMediator().observe(this, Observer {
             adapter.submitList(it)
             breached_sites_recycler.layoutManager?.smoothScrollToPosition(breached_sites_recycler, RecyclerView.State(), 0)
-            swipeRefresh.isRefreshing = false
 
         })
     }

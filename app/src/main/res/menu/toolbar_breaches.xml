@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
@@ -12,54 +13,117 @@
         <menu>
 
             <item
-                android:id="@+id/sort_name_asc"
-                android:title="@string/sortNameAsc"
-                app:ico_icon="gmi_sort_asc"
-                app:ico_color="@color/md_white_1000"
-                app:ico_size="24dp"
-                />
+                android:id="@+id/sortNameOption"
+                android:title="@string/siteNameTitle"
+                app:showAsAction="always|withText"
+                >
+
+                <menu>
+
+                    <item
+                        android:id="@+id/sort_name_asc"
+                        android:title="@string/ascending"
+                        app:ico_icon="gmi_sort_asc"
+                        app:ico_color="@color/md_white_1000"
+                        app:ico_size="24dp"
+                        />
+
+                    <item
+                        android:id="@+id/sort_name_desc"
+                        android:title="@string/descending"
+                        app:ico_icon="gmi_sort_desc"
+                        app:ico_color="@color/md_white_1000"
+                        app:ico_size="24dp"
+                        />
+
+                </menu>
+
+            </item>
 
             <item
-                android:id="@+id/sort_name_desc"
-                android:title="@string/sortNameDesc"
-                app:ico_icon="gmi_sort_asc"
-                app:ico_color="@color/md_white_1000"
-                app:ico_size="24dp"
-                />
+                android:id="@+id/sortBreachDateOption"
+                android:title="@string/breachDateTitle"
+                app:showAsAction="always|withText"
+                >
+
+                <menu>
+
+                    <item
+                        android:id="@+id/sort_date_asc"
+                        android:title="@string/ascending"
+                        app:ico_icon="gmi_sort_asc"
+                        app:ico_color="@color/md_white_1000"
+                        app:ico_size="24dp"
+                        />
+
+                    <item
+                        android:id="@+id/sort_date_desc"
+                        android:title="@string/descending"
+                        app:ico_icon="gmi_sort_asc"
+                        app:ico_color="@color/md_white_1000"
+                        app:ico_size="24dp"
+                        />
+
+                </menu>
+
+            </item>
 
             <item
-                android:id="@+id/sort_date_asc"
-                android:title="@string/sortBreachDateAsc"
-                app:ico_icon="gmi_sort_amount_asc"
-                app:ico_color="@color/md_white_1000"
-                app:ico_size="24dp"
-                />
+                android:id="@+id/addedDateOption"
+                android:title="@string/addedDateTitle"
+                app:showAsAction="always|withText"
+                >
+
+                <menu>
+                    <item
+                        android:id="@+id/sort_added_asc"
+                        android:title="@string/ascending"
+                        app:ico_icon="gmi_sort_amount_asc"
+                        app:ico_color="@color/md_white_1000"
+                        app:ico_size="24dp"
+                        />
+
+                    <item
+                        android:id="@+id/sort_added_desc"
+                        android:title="@string/descending"
+                        app:ico_icon="gmi_sort_amount_desc"
+                        app:ico_color="@color/md_white_1000"
+                        app:ico_size="24dp"
+                        />
+                </menu>
+
+            </item>
+
 
             <item
-                android:id="@+id/sort_date_desc"
-                android:title="@string/sortBreachDateDesc"
-                app:ico_icon="gmi_sort_amount_desc"
-                app:ico_color="@color/md_white_1000"
-                app:ico_size="24dp"
-                />
+                android:id="@+id/pwnCountOption"
+                android:title="@string/pwnCountTitle"
+                >
 
-            <item
-                android:id="@+id/sort_pwn_asc"
-                android:title="@string/sortPwnAsc"
-                app:ico_icon="gmi_sort_asc"
-                app:ico_color="@color/md_white_1000"
-                app:ico_size="24dp"
-                />
+                <menu>
+                    <item
+                        android:id="@+id/sort_pwn_asc"
+                        android:title="@string/ascending"
+                        app:ico_icon="gmi_sort_amount_asc"
+                        app:ico_color="@color/md_white_1000"
+                        app:ico_size="24dp"
+                        />
 
-            <item
-                android:id="@+id/sort_pwn_desc"
-                android:title="@string/sortPwnDesc"
-                app:ico_icon="gmi_sort_asc"
-                app:ico_color="@color/md_white_1000"
-                app:ico_size="24dp"
-                />
+                    <item
+                        android:id="@+id/sort_pwn_desc"
+                        android:title="@string/descending"
+                        app:ico_icon="gmi_sort_amount_desc"
+                        app:ico_color="@color/md_white_1000"
+                        app:ico_size="24dp"
+                        />
+
+                </menu>
+
+            </item>
+
 
         </menu>
+
 
     </item>
 

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="5dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/row_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/hibpBreached"
+        >
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/delete_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:iiv_icon="gmi_delete"
+            app:iiv_color="@color/md_white_1000"
+            app:iiv_size="30dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignEnd="@id/delete_icon"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="@string/delete"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            />
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/row_foreground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/list_item_padding"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            >
+
+            <TextView
+                android:id="@+id/user_email_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_white_1000"
+                android:textSize="18sp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

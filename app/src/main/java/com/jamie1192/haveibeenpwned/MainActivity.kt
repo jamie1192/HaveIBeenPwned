@@ -4,35 +4,23 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import co.zsmb.materialdrawerkt.builders.accountHeader
 import co.zsmb.materialdrawerkt.builders.drawer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
-import com.google.android.material.snackbar.Snackbar
-import com.jamie1192.haveibeenpwned.breachedSites.BreachedSiteModalFragment
-import com.jamie1192.haveibeenpwned.breachedSites.BreachedSitesViewModel
 import com.jamie1192.haveibeenpwned.breachedSites.BreachesFragment
-import com.jamie1192.haveibeenpwned.database.adapters.BreachedPagedAdapter
 import com.jamie1192.haveibeenpwned.emailSearch.EmailSearchFragment
-import com.jamie1192.haveibeenpwned.emailSearch.SearchActivity
-import com.mikepenz.iconics.utils.IconicsMenuInflaterUtil
+import com.jamie1192.haveibeenpwned.storedEmails.UserEmailsFragment
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import com.mikepenz.materialdrawer.Drawer
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.reflect.KClass
 
 class MainActivity : AppCompatActivity() {
 
 
-    private lateinit var viewModel : BreachedSitesViewModel
     private lateinit var drawer : Drawer
     private val compDisposable = CompositeDisposable()
 
@@ -52,20 +40,6 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        IconicsMenuInflaterUtil.inflate(menuInflater, this, R.menu.toolbar_breaches, menu)
-//        return true
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        when (item?.itemId) {
-//            R.id.sort_date_asc -> viewModel.setBreachedPagedList("breachDateAsc")
-//            R.id.sort_date_desc -> viewModel.setBreachedPagedList("breachDateDesc")
-//
-//        }
-//        return true
-//    }
-
     private fun getDrawer() {
         drawer = drawer {
             accountHeader {
@@ -79,10 +53,17 @@ class MainActivity : AppCompatActivity() {
                     false
                 }
             }
-            primaryItem("Search") {
+            primaryItem("pwned?") {
                 iicon = MaterialDesignIconic.Icon.gmi_search
                 onClick { _ ->
                     setFragment(EmailSearchFragment.newInstance())
+                    false
+                }
+            }
+            primaryItem("My Email Addresses") {
+                iicon = MaterialDesignIconic.Icon.gmi_email
+                onClick { _->
+                    setFragment(UserEmailsFragment.newInstance())
                     false
                 }
             }

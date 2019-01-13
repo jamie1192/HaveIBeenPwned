@@ -27,7 +27,7 @@ import timber.log.Timber
 class EmailSearchFragment : Fragment() {
 
     private val adapter = EmailSearchAdapter()
-    private lateinit var anim : ValueAnimator
+    private var anim = ValueAnimator.ofFloat(0F, 1F)
     private val compDisposable = CompositeDisposable()
 
     companion object {

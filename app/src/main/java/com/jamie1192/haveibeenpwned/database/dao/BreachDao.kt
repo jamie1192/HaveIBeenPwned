@@ -28,6 +28,12 @@ interface BreachDao {
     @Query("SELECT * FROM breaches ORDER BY breachDate ASC")
     fun getBreachesByDateAsc(): DataSource.Factory<Int, Breach>
 
+    @Query("SELECT * FROM breaches ORDER BY addedDate ASC")
+    fun getBreachesByAddedAsc(): DataSource.Factory<Int, Breach>
+
+    @Query("SELECT * FROM breaches ORDER BY addedDate DESC")
+    fun getBreachesByAddedDesc(): DataSource.Factory<Int, Breach>
+
     @Query("SELECT * FROM breaches ORDER BY breachDate DESC")
     fun getBreachesByDateDesc(): DataSource.Factory<Int, Breach>
 
