@@ -149,7 +149,7 @@ class BreachesFragment : Fragment() {
 
     private fun getBreachedSites() {
 
-        viewModel.checkLastUpdated()
+//        viewModel.checkLastUpdated()
 
         sharedPrefs.getString("breachOrder", null)?.let {
             viewModel.setQuery(it)

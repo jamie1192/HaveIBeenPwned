@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.jamie1192.haveibeenpwned.database.models.UserEmail
 import io.reactivex.Maybe
+import io.reactivex.Observable
+import io.reactivex.Single
 
 /**
  * Created by jamie1192 on 7/1/19.
@@ -14,6 +16,16 @@ interface UserDao {
 
     @Query("SELECT * FROM userEmail")
     fun getAllAccounts() : LiveData<List<UserEmail>>
+
+    @Query("SELECT * FROM userEmail")
+    fun getAllAccountsObsv() : Observable<List<UserEmail>>
+
+    //TODO add WHERE notifyNewBreaches = 1
+    @Query("SELECT * FROM userEmail")
+    fun getAllAccountsSingle() : Single<List<UserEmail>>
+
+    @Query("UPDATE userEmail SET breachCount = :breaches WHERE email = :email")
+    fun updateSingleEmail(breaches : Int, email : String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEmailList(list: List<UserEmail>)
