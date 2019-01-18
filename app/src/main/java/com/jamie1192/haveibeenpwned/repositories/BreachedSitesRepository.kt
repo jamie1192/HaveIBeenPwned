@@ -4,9 +4,11 @@ import android.content.SharedPreferences
 import androidx.lifecycle.*
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import androidx.work.ListenableWorker
 import com.jamie1192.haveibeenpwned.api.ApiService
 import com.jamie1192.haveibeenpwned.database.AppDatabase
 import com.jamie1192.haveibeenpwned.database.models.Breach
+import com.jamie1192.haveibeenpwned.database.models.EmailBreach
 import com.jamie1192.haveibeenpwned.di.App
 import com.jamie1192.haveibeenpwned.utils.NoNetworkException
 import com.jamie1192.haveibeenpwned.utils.Response
@@ -14,6 +16,7 @@ import com.jamie1192.haveibeenpwned.utils.Response.Companion.error
 import com.jamie1192.haveibeenpwned.utils.Response.Companion.loading
 import com.jamie1192.haveibeenpwned.utils.Response.Companion.success
 import com.jamie1192.haveibeenpwned.utils.SingleLiveEvent
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -23,6 +26,7 @@ import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.temporal.ChronoUnit
 import timber.log.Timber
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -64,6 +68,30 @@ class BreachedSitesRepository {
 
     }
 
+    fun testWorker() {
+
+        val disposable : Disposable = appDatabase.userDao().getAllAccountsObsv()
+            .flatMap {
+                Observable.fromIterable(it)
+            }
+            .map { userEmail ->
+                apiService.getBreachedAccount(userEmail.email)
+                    .delay(1800, TimeUnit.MILLISECONDS)
+                    .subscribe {
+                        val listToSave = mutableListOf<EmailBreach>()
+                        for (breach in it) {
+                            val emailBreach = EmailBreach(0, breach.name, breach, userEmail.email )
+                            listToSave.add(emailBreach)
+                        }
+                        appDatabase.emailBreachDao().insertEmailBreachList(listToSave)
+                    }
+            }
+            .subscribe {
+                Timber.i("Worker successful")
+            }
+        compDisposable.add(disposable)
+    }
+
     private fun updateDatabase() {
 
         snackbarMessage.postValue(loading("Updating database..."))
@@ -72,6 +100,7 @@ class BreachedSitesRepository {
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe({ breaches ->
+                Timber.i("Breach list size of ${breaches.size}")
                 insertUpdateBreaches(breaches)
             }, {
                 if(it is NoNetworkException) {

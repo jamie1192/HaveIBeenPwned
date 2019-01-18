@@ -120,16 +120,6 @@ class BreachesFragment : Fragment() {
         getOnClickSite()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-//        val scrollPosition = breached_sites_recycler.layoutManager?.
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-    }
-
     companion object {
 
         @JvmStatic
@@ -149,7 +139,7 @@ class BreachesFragment : Fragment() {
 
     private fun getBreachedSites() {
 
-//        viewModel.checkLastUpdated()
+        viewModel.checkLastUpdated()
 
         sharedPrefs.getString("breachOrder", null)?.let {
             viewModel.setQuery(it)

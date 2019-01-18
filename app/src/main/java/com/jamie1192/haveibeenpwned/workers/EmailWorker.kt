@@ -95,7 +95,7 @@ class EmailWorker(appContext: Context, workerParams: WorkerParameters) : RxWorke
 
 
 
-
+        //working as disposable?
 //        val disposable : Disposable = database.userDao().getAllAccountsObsv()
 //            .flatMap {
 //                Observable.fromIterable(it)

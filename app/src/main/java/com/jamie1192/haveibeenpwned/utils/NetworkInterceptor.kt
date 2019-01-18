@@ -19,6 +19,8 @@ class NetworkInterceptor(context: Context) : Interceptor {
         }
 
         val builder : Request.Builder = chain.request().newBuilder()
+            .header("User-Agent", "HaveIBeenPwned-for-Android")
+
         return chain.proceed(builder.build())
     }
 }

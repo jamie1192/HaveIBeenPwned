@@ -37,7 +37,7 @@ interface ApiService {
 
             fun httpClient() = OkHttpClient.Builder().apply {
                 addInterceptor(NetworkInterceptor(context))
-                if (BuildConfig.DEBUG) addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
+                if (BuildConfig.DEBUG) addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             }.build()
 
 
